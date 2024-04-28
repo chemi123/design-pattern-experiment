@@ -33,53 +33,16 @@ func (m *MockICreator) EXPECT() *MockICreatorMockRecorder {
 	return m.recorder
 }
 
-// NewProductWithFactory mocks base method.
-func (m *MockICreator) NewProductWithFactory() IProductWithFactory {
+// NewProduct mocks base method.
+func (m *MockICreator) NewProduct() IProduct {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "NewProductWithFactory")
-	ret0, _ := ret[0].(IProductWithFactory)
+	ret := m.ctrl.Call(m, "NewProduct")
+	ret0, _ := ret[0].(IProduct)
 	return ret0
 }
 
-// NewProductWithFactory indicates an expected call of NewProductWithFactory.
-func (mr *MockICreatorMockRecorder) NewProductWithFactory() *gomock.Call {
+// NewProduct indicates an expected call of NewProduct.
+func (mr *MockICreatorMockRecorder) NewProduct() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewProductWithFactory", reflect.TypeOf((*MockICreator)(nil).NewProductWithFactory))
-}
-
-// MockIProductWithFactory is a mock of IProductWithFactory interface.
-type MockIProductWithFactory struct {
-	ctrl     *gomock.Controller
-	recorder *MockIProductWithFactoryMockRecorder
-}
-
-// MockIProductWithFactoryMockRecorder is the mock recorder for MockIProductWithFactory.
-type MockIProductWithFactoryMockRecorder struct {
-	mock *MockIProductWithFactory
-}
-
-// NewMockIProductWithFactory creates a new mock instance.
-func NewMockIProductWithFactory(ctrl *gomock.Controller) *MockIProductWithFactory {
-	mock := &MockIProductWithFactory{ctrl: ctrl}
-	mock.recorder = &MockIProductWithFactoryMockRecorder{mock}
-	return mock
-}
-
-// EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockIProductWithFactory) EXPECT() *MockIProductWithFactoryMockRecorder {
-	return m.recorder
-}
-
-// String mocks base method.
-func (m *MockIProductWithFactory) String() string {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "String")
-	ret0, _ := ret[0].(string)
-	return ret0
-}
-
-// String indicates an expected call of String.
-func (mr *MockIProductWithFactoryMockRecorder) String() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "String", reflect.TypeOf((*MockIProductWithFactory)(nil).String))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewProduct", reflect.TypeOf((*MockICreator)(nil).NewProduct))
 }

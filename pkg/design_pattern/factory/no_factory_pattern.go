@@ -1,29 +1,19 @@
 package factory
 
-type IProductWithoutFactory interface {
-	String() string
+func NewProduct() IProduct {
+	return &StandardProduct{}
 }
 
-type ProductWithoutFactory struct{}
-
-func NewProductWithoutFactory() IProductWithoutFactory {
-	return &ProductWithoutFactory{}
+type LogicGeneratingProductDirectly struct {
+	Product IProduct
 }
 
-func (productWithoutFactory *ProductWithoutFactory) String() string {
-	return "ProductWithoutFactory"
-}
-
-type LogicUsingProductWithoutFactory struct {
-	ProductWithoutFactory IProductWithoutFactory
-}
-
-func NewLogicUsingProductWithoutFactory(iProductWithoutFactory IProductWithoutFactory) *LogicUsingProductWithoutFactory {
-	return &LogicUsingProductWithoutFactory{
-		ProductWithoutFactory: iProductWithoutFactory,
+func NewLogicGeneratingProductDirectly(product IProduct) *LogicGeneratingProductDirectly {
+	return &LogicGeneratingProductDirectly{
+		Product: product,
 	}
 }
 
-func (logicUsingProductWithoutFactory *LogicUsingProductWithoutFactory) Logic() string {
-	return "LogicUsingProductWithoutFactory uses " + logicUsingProductWithoutFactory.ProductWithoutFactory.String()
+func (logicGeneratingProductDirectly *LogicGeneratingProductDirectly) Logic() string {
+	return "LogicGeneratingProductDirectly uses " + logicGeneratingProductDirectly.Product.String()
 }

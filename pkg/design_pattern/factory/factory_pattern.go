@@ -1,35 +1,25 @@
 package factory
 
 type ICreator interface {
-	NewProductWithFactory() IProductWithFactory
+	NewProduct() IProduct
 }
 
 type Creator struct{}
 
-func (creator *Creator) NewProductWithFactory() IProductWithFactory {
-	return &ProductWithFactory{}
+func (creator *Creator) NewProduct() IProduct {
+	return &StandardProduct{}
 }
 
-type IProductWithFactory interface {
-	String() string
+type LogicGeneratingProductViaFactory struct {
+	Product IProduct
 }
 
-type ProductWithFactory struct{}
-
-func (productWithFactory *ProductWithFactory) String() string {
-	return "ProductWithFactory"
-}
-
-type LogicUsingProductWithFactory struct {
-	ProductWithFactory IProductWithFactory
-}
-
-func NewLogicUsingProductWithFactory(creator ICreator) *LogicUsingProductWithFactory {
-	return &LogicUsingProductWithFactory{
-		ProductWithFactory: creator.NewProductWithFactory(),
+func NewLogicGeneratingProductViaFactory(creator ICreator) *LogicGeneratingProductViaFactory {
+	return &LogicGeneratingProductViaFactory{
+		Product: creator.NewProduct(),
 	}
 }
 
-func (logicUsingProductWithFactor *LogicUsingProductWithFactory) Logic() string {
-	return "LogicUsingProductWithFactory uses " + logicUsingProductWithFactor.ProductWithFactory.String()
+func (logicGeneratingProductViaFactory *LogicGeneratingProductViaFactory) Logic() string {
+	return "LogicGeneratingProductViaFactory uses " + logicGeneratingProductViaFactory.Product.String()
 }

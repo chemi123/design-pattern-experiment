@@ -10,13 +10,13 @@ func Test_no_factory_pattern(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockIProductWithoutFactory := NewMockIProductWithoutFactory(ctrl)
-	mockIProductWithoutFactory.EXPECT().String().Return("MockProductWithoutFactory").AnyTimes()
+	mockIProduct := NewMockIProduct(ctrl)
+	mockIProduct.EXPECT().String().Return("MockProduct").AnyTimes()
 
-	logicUsingProductWithoutFactory := NewLogicUsingProductWithoutFactory(mockIProductWithoutFactory)
+	logicGeneratingProductDirectly := NewLogicGeneratingProductDirectly(mockIProduct)
 
-	expected := "LogicUsingProductWithoutFactory uses MockProductWithoutFactory"
-	actual := logicUsingProductWithoutFactory.Logic()
+	expected := "LogicGeneratingProductDirectly uses MockProduct"
+	actual := logicGeneratingProductDirectly.Logic()
 
 	if expected != actual {
 		t.Errorf("Not match.\n expected=%s\n actual=%s\n", expected, actual)
