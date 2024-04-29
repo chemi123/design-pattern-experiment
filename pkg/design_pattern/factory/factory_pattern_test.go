@@ -12,10 +12,12 @@ func Test_factory_pattern(t *testing.T) {
 	mockICreator := NewMockICreator(ctrl)
 	mockIProduct := NewMockIProduct(ctrl)
 
-	mockICreator.EXPECT().NewProduct().Return(mockIProduct).AnyTimes()
+	mockProductType := ProductType("MockProductType")
+
+	mockICreator.EXPECT().NewProduct(mockProductType).Return(mockIProduct).AnyTimes()
 	mockIProduct.EXPECT().String().Return("MockProduct").AnyTimes()
 
-	logicGeneratingProductViaFactory := NewLogicGeneratingProductViaFactory(mockICreator)
+	logicGeneratingProductViaFactory := NewLogicGeneratingProductViaFactory(mockICreator, mockProductType)
 
 	expected := "LogicGeneratingProductViaFactory uses MockProduct"
 	actual := logicGeneratingProductViaFactory.Logic()

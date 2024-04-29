@@ -34,15 +34,15 @@ func (m *MockICreator) EXPECT() *MockICreatorMockRecorder {
 }
 
 // NewProduct mocks base method.
-func (m *MockICreator) NewProduct() IProduct {
+func (m *MockICreator) NewProduct(productType ProductType) IProduct {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "NewProduct")
+	ret := m.ctrl.Call(m, "NewProduct", productType)
 	ret0, _ := ret[0].(IProduct)
 	return ret0
 }
 
 // NewProduct indicates an expected call of NewProduct.
-func (mr *MockICreatorMockRecorder) NewProduct() *gomock.Call {
+func (mr *MockICreatorMockRecorder) NewProduct(productType interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewProduct", reflect.TypeOf((*MockICreator)(nil).NewProduct))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewProduct", reflect.TypeOf((*MockICreator)(nil).NewProduct), productType)
 }
