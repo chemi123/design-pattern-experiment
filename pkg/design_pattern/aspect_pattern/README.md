@@ -1,0 +1,1 @@
+desingn-patternだけではなくなってきた
